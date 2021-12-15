@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="entity"
+            type="idv.john.winwinmediapractice.retrofits.PostEntity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:id="@+id/postTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{entity.title}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/postUserImage"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="6dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/postTitle"
+            app:riv_border_color="@android:color/darker_gray"
+            app:riv_border_width="0.5dp"
+            app:riv_corner_radius="8dp"
+            app:riv_oval="true" />
+
+        <TextView
+            android:id="@+id/postNickName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginBottom="1dp"
+            android:text="@{entity.user.nickName}"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/postUserImage"
+            app:layout_constraintStart_toEndOf="@+id/postUserImage"
+            app:layout_constraintTop_toTopOf="@+id/postUserImage" />
+
+        <TextView
+            android:id="@+id/postCreationDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginBottom="1dp"
+            android:text="@{entity.creationDate}"
+            app:layout_constraintBottom_toBottomOf="@+id/postUserImage"
+            app:layout_constraintStart_toEndOf="@+id/postNickName"
+            app:layout_constraintTop_toTopOf="@+id/postUserImage" />
+
+        <TextView
+            android:id="@+id/postContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text='@{entity.content.replaceAll("\n","").trim()}'
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/postUserImage" />
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/postImage1"
+            android:layout_width="0dp"
+            android:layout_height="96dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toTopOf="@id/postCounters"
+            app:layout_constraintEnd_toStartOf="@id/postImage2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/postContent"
+            app:riv_border_color="@android:color/darker_gray"
+            app:riv_border_width="0.5dp"
+            app:riv_corner_radius="8dp" />
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/postImage2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@+id/postImage1"
+            app:layout_constraintEnd_toStartOf="@id/postImage3"
+            app:layout_constraintStart_toEndOf="@+id/postImage1"
+            app:layout_constraintTop_toTopOf="@+id/postImage1"
+            app:riv_border_color="@android:color/darker_gray"
+            app:riv_border_width="0.5dp"
+            app:riv_corner_radius="8dp" />
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/postImage3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@+id/postImage1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/postImage2"
+            app:layout_constraintTop_toTopOf="@+id/postImage1"
+            app:riv_border_color="@android:color/darker_gray"
+            app:riv_border_width="0.5dp"
+            app:riv_corner_radius="8dp" />
+
+        <TextView
+            android:id="@+id/postTags"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{entity.spannedTags}"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/postCounters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@{@string/counters(entity.likeCount, entity.favoriteCount, entity.commentCount, entity.unlockCount)}"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/postTags"
+            app:layout_constraintStart_toEndOf="@+id/postTags"
+            app:layout_constraintTop_toTopOf="@+id/postTags" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

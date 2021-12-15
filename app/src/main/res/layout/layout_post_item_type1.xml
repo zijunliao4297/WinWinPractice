@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="entity"
+            type="idv.john.winwinmediapractice.retrofits.PostEntity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:id="@+id/postTags"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{entity.spannedTags}"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/postContent" />
+
+        <TextView
+            android:id="@+id/postTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{entity.title}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/postUserImage"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="6dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/postTitle"
+            app:riv_border_color="@android:color/darker_gray"
+            app:riv_border_width="0.5dp"
+            app:riv_corner_radius="8dp"
+            app:riv_oval="true" />
+
+        <TextView
+            android:id="@+id/postNickName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="@{entity.user.nickName}"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/postUserImage"
+            app:layout_constraintStart_toEndOf="@+id/postUserImage"
+            app:layout_constraintTop_toTopOf="@+id/postUserImage" />
+
+        <TextView
+            android:id="@+id/postCreationDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginBottom="1dp"
+            android:text="@{entity.creationDate}"
+            app:layout_constraintBottom_toBottomOf="@+id/postUserImage"
+            app:layout_constraintStart_toEndOf="@+id/postNickName"
+            app:layout_constraintTop_toTopOf="@+id/postUserImage" />
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/postImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@+id/postContent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/postContent"
+            app:layout_constraintTop_toTopOf="@+id/postNickName"
+            app:riv_border_color="@android:color/darker_gray"
+            app:riv_border_width="0.5dp"
+            app:riv_corner_radius="8dp" />
+
+        <TextView
+            android:id="@+id/postContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:minLines="2"
+            android:text='@{entity.content.replaceAll("\n","").trim()}'
+            app:layout_constraintEnd_toStartOf="@+id/postImage"
+            app:layout_constraintHorizontal_weight="3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/postUserImage" />
+
+        <TextView
+            android:id="@+id/postCounters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@{@string/counters(entity.likeCount, entity.favoriteCount, entity.commentCount, entity.unlockCount)}"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/postTags"
+            app:layout_constraintStart_toEndOf="@+id/postTags"
+            app:layout_constraintTop_toTopOf="@+id/postTags" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">WinWinMediaPractice</string>
+    <string name="counters">點讚 %1$d．蒐藏 %2$d．評論 %3$d．觀看 %4$d</string>
+</resources>
